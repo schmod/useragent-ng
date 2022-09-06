@@ -54,7 +54,7 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "lru-cache": "4.1.x",
+    "lru-cache": "^7.14.0",
     "uap-core": "^0.16.0",
     "yamlparser": "0.0.2"
   }
