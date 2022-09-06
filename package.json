@@ -1,8 +1,8 @@
 {
-  "name": "useragent",
+  "name": "useragent-ng",
   "version": "2.3.0",
   "description": "Fastest, most accurate & effecient user agent string parser, uses Browserscope's research for parsing",
-  "author": "Arnout Kazemier",
+  "author": "Arnout Kazemier & Andrew Schmadel",
   "main": "./index.js",
   "keywords": [
     "agent",
@@ -25,33 +25,37 @@
       "name": "Arnout Kazemier",
       "email": "info@3rd-Eden.com",
       "web": "http://www.3rd-Eden.com"
+    },
+    {
+      "name": "Andrew Schmadel",
+      "email": "schmod-dev@gmail.com"
     }
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/3rd-Eden/useragent.git"
+    "url": "http://github.com/schmod/useragent-ng.git"
   },
   "devDependencies": {
-    "assume": "1.5.x",
-    "mocha": "5.0.x",
+    "assume": "^2.3.0",
+    "mocha": "^10.0.0",
     "pre-commit": "1.2.x",
-    "request": "^2.88.0",
     "semver": "5.5.x",
-    "yamlparser": "0.0.x"
+    "tmp": "^0.2.1"
   },
   "pre-commit": [
     "test",
-    "update"
+    "build"
   ],
   "scripts": {
     "test": "mocha $(find test -name '*.test.js')",
     "qa": "mocha --ui exports $(find test -name '*.qa.js')",
-    "update": "node ./bin/update.js",
-    "prepublish": "npm run update"
+    "build": "node ./bin/build.js",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "lru-cache": "4.1.x",
-    "tmp": "0.0.x"
+    "uap-core": "^0.16.0",
+    "yamlparser": "0.0.2"
   }
 }
