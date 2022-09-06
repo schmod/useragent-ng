@@ -12,7 +12,7 @@ var microtime = require('microtime')
 /**
  * Useragent parsers.
  */
-var useragent = require('../')
+var useragent = require('useragent')
   , uaparser = require('ua-parser')
   , useragent_parser = require('useragent_parser')
   , useragent_parser2 = require('useragent-parser');
@@ -65,7 +65,7 @@ froomfroom
   );
 })
 .on('complete', function () {
-  console.log('Module: "'+ this.filter('fastest').pluck('name') +'" is the user agent fastest parser.');
+  console.log('Module: "'+ this.filter('fastest').map('name') +'" is the user agent fastest parser.');
 });
 
 /**

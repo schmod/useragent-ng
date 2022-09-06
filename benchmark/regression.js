@@ -59,7 +59,7 @@ froomfroom
   );
 })
 .on('complete', function () {
-  console.log(this.filter('fastest').pluck('name') + ' is the fastest parser');
+  console.log(this.filter('fastest').map('name') + ' is the fastest parser');
 });
 
 /**
