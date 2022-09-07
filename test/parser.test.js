@@ -66,7 +66,7 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('0.0.0');
       assume(agent.toString()).equals('Other 0.0.0 / Other 0.0.0');
       assume(agent.toAgent()).equals('Other 0.0.0');
-      assume(JSON.stringify(agent)).equals('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
+      assume(agent.toJSON()).deep.equals({"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0","brand": "Other","model":"Other"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}});
     });
 
     it('should not throw errors on empty strings and default to unkown', function () {
@@ -81,7 +81,7 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('0.0.0');
       assume(agent.toString()).equals('Other 0.0.0 / Other 0.0.0');
       assume(agent.toAgent()).equals('Other 0.0.0');
-      assume(JSON.stringify(agent)).equals('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
+      assume(agent.toJSON()).deep.equals({"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0","brand": "Other","model":"Other"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}});
     });
 
     it('should correctly parse chromes user agent', function () {
@@ -96,7 +96,7 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('15.0.874');
       assume(agent.toString()).equals('Chrome 15.0.874 / Mac OS X 10.7.1');
       assume(agent.toAgent()).equals('Chrome 15.0.874');
-      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+      assume(agent.toJSON()).deep.equals({"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Mac","major":"0","minor":"0","patch":"0","brand": "Other","model":"Other"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}});
     });
 
     it('correctly parses iOS8', function () {
@@ -113,6 +113,11 @@ describe('useragent', function () {
       assume(agent.os.major).equals('1');
       assume(agent.os.minor).equals('22');
       assume(agent.os.patch).equals('74257');
+    });
+
+    it('correctly parses Pixel 6a', function () {
+      var agent = useragent.parse('Mozilla/5.0 (Linux; Android 12; Pixel 6a) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36');
+      assume(agent.toJSON()).deep.equals({"family":"Chrome Mobile WebView","major":"28","minor":"0","patch":"1500","device":{"family":"Samsung SM-T230","brand":"Samsung","model":"SM-T230","major":"0","minor":"0","patch":"0"},"os":{"family":"Android","major":"4","minor":"4","patch":"2"}});
     });
   });
 
