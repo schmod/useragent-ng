@@ -217,9 +217,15 @@ which are:
 When you access those 2 properties the agent will do on demand parsing of the
 Operating System or/and Device information.
 
-The OperatingSystem has the same properties as the Agent, for the Device we
-don't have any versioning information available, so only the `family` property is
-set there. If we cannot find the family, they will default to `Other`.
+The OperatingSystem has the same properties as the Agent.
+
+Device has the properties:
+
+- `family` A human-readable description of the device
+- `brand` The device manufacturer
+- `model` The device's model number
+
+If we cannot find the family, they will default to `Other`.
 
 The following methods are available:
 

@@ -292,11 +292,13 @@ OperatingSystem.prototype.toJSON = function toJSON(){
  * @param {String} patch Patch version of the device
  * @api public
  */
-function Device(family, major, minor, patch) {
+function Device(family, brand, model) {
   this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.major = '0';
+  this.minor = '0';
+  this.patch = '0';
+  this.brand = brand || 'Other';
+  this.model = model || 'Other';
 }
 
 /**
@@ -349,6 +351,8 @@ Device.prototype.toVersion = function toVersion() {
 Device.prototype.toJSON = function toJSON() {
   return {
       family: this.family
+    , brand: this.brand || undefined
+    , model: this.model || undefined
     , major: this.major || undefined
     , minor: this.minor || undefined
     , patch: this.patch || undefined
