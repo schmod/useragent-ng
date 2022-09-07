@@ -13,7 +13,8 @@ var microtime = require('microtime')
 /**
  * Useragent parsers.
  */
-var useragent2 = require('../')
+var useragentNg2 = require('../')
+  , useragentNg = require('useragent-ng')
   , useragent = require('useragent');
 
 /**
@@ -37,12 +38,17 @@ var useragentlist = path.join(__dirname, '..', 'test', 'fixtures', file+'.yaml')
 var froomfroom = new benchmark.Suite;
 
 froomfroom
-.add('useragent latest', function () {
+.add('useragent-ng latest', function () {
   for (var i = 0; i < length; i++ ) {
-    useragent2.parse(testcases[i]);
+    useragentNg2.parse(testcases[i]);
   }
 })
-.add('useragent1', function () {
+.add('useragent-ng npm', function () {
+  for (var i = 0; i < length; i++ ) {
+    useragentNg.parse(testcases[i]);
+  }
+})
+.add('useragent classic', function () {
   for (var i = 0; i < length; i++ ) {
     useragent.parse(testcases[i]);
   }

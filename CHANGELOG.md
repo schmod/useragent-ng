@@ -1,5 +1,9 @@
 ## Version 2.0
 
+- **v2.4.3**
+  
+  - Slimmed down the size/complexity of the built regexps.js file.  The regexps are now stored in a normal array.
+
 - **v2.4.0**
 
   - Forked and renamed to useragent-ng
