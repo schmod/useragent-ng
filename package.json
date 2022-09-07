@@ -1,6 +1,6 @@
 {
   "name": "useragent-ng",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Fastest, most accurate & effecient user agent string parser, uses Browserscope's research for parsing",
   "author": "Arnout Kazemier & Andrew Schmadel",
   "main": "./index.js",
