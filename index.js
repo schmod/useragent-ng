@@ -57,8 +57,6 @@ Object.defineProperty(Agent.prototype, 'os', {
     for (; i < length; i++) {
       if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
-
-        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
         break;
       }
     }
@@ -67,10 +65,10 @@ Object.defineProperty(Agent.prototype, 'os', {
         value: !parser || !res
           ? new OperatingSystem()
           : new OperatingSystem(
-                res[1]
-              , parser[2] || res[2]
-              , parser[3] || res[3]
-              , parser[4] || res[4]
+                replace(parser[1], res) || res[1]
+              , replace(parser[2], res) || res[2]
+              , replace(parser[3], res) || res[3]
+              , replace(parser[4], res) || res[4]
             )
     }).os;
   },
@@ -108,8 +106,6 @@ Object.defineProperty(Agent.prototype, 'device', {
     for (; i < length; i++) {
       if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
-
-        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
         break;
       }
     }
@@ -118,10 +114,9 @@ Object.defineProperty(Agent.prototype, 'device', {
         value: !parser || !res
           ? new Device()
           : new Device(
-                res[1]
-              , parser[2] || res[2]
-              , parser[3] || res[3]
-              , parser[4] || res[4]
+                replace(parser[1], res) || res[1]
+              , replace(parser[2], res) || res[3]
+              , replace(parser[3], res) || res[3]
             )
     }).device;
   },
@@ -204,8 +199,8 @@ Agent.prototype.toJSON = function toJSON() {
     , major: this.major
     , minor: this.minor
     , patch: this.patch
-    , device: this.device
-    , os: this.os
+    , device: this.device.toJSON()
+    , os: this.os.toJSON()
   };
 };
 
@@ -429,12 +424,11 @@ exports.parse = function parse(userAgent, jsAgent) {
     if (res = parsers[i][0].exec(userAgent)) {
       parser = parsers[i];
 
-      if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
       if (!jsAgent) return new Agent(
-          res[1]
-        , parser[2] || res[2]
-        , parser[3] || res[3]
-        , parser[4] || res[4]
+          replace(parser[1], res) || res[1]
+        , replace(parser[2], res) || res[2]
+        , replace(parser[3], res) || res[3]
+        , replace(parser[4], res) || res[4]
         , userAgent
       );
 
@@ -596,3 +590,19 @@ exports.fromJSON = function fromJSON(details) {
  * @api public
  */
 exports.version = require('./package.json').version;
+
+/**
+ * @param {*} str String like "Hello $1" to inject replacments into
+ * @param {*} matches Result of a regex match
+ * @returns 
+ */
+function replace(str, matches) {
+  if (!str) return;
+
+  let replacement = str;
+  const replacements = str.matchAll(/\$(\d)+/g);
+  for (var sub of replacements) {
+    replacement = replacement.replace(sub[0], matches[sub[1]])
+  }
+  return replacement;
+}
