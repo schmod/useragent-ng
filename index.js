@@ -354,6 +354,10 @@ Device.prototype.toJSON = function toJSON() {
   };
 };
 
+module.exports = function updater() {
+  console.warn("automatic updating has been removed.  please use your package-manager to update uap-core");
+}
+
 // Override the exports with our newly set module.exports
 exports = module.exports;
 
