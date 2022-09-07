@@ -110,8 +110,14 @@ declare namespace useragent {
 
   class Device {
     family: string;
+
+    /** @deprecated */
     major: string;
+
+    /** @deprecated */
     minor: string;
+
+    /** @deprecated */
     patch: string;
 
     /**
