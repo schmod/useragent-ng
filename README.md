@@ -38,7 +38,7 @@ do not contain a modern database of user-agent regexes.
 ```
 Starting the benchmark, parsing 62 useragent strings per run
 
-Executed benchmark against node module: "useragent"
+Executed benchmark against node module: "useragent-ng"
 Count (27), Cycles (3), Elapsed (5.405), Hz (503.8134678821794)
 
 Executed benchmark against node module: "useragent_parser"
@@ -81,26 +81,6 @@ Include the `useragent-ng` parser in you node.js application:
 
 ```js
 var useragent = require("useragent-ng");
-```
-
-The `useragent-ng` library allows you do use the automatically installed RegExp
-library or you can fetch it live from the remote servers. So if you are
-paranoid and always want your RegExp library to be up to date to match with
-agent the widest range of `useragent` strings you can do:
-
-```js
-var useragent = require("useragent-ng");
-useragent(true);
-```
-
-This will async load the database from the server and compile it to a proper
-JavaScript supported format. If it fails to compile or load it from the remote
-location it will just fall back silently to the shipped version. If you want to
-use this feature you need to add `yamlparser` and `request` to your package.json
-
-```
-npm install yamlparser --save
-npm install request --save
 ```
 
 #### useragent.parse(useragent string[, js useragent]);
@@ -345,7 +325,7 @@ For small changes between version please review the [changelog][changelog].
 
 #### Upgrading from `useragent` 2.x
 
-- `useragent.update()` has been removed
+- The `useragent(true)` command no longer fetches a fresh set of regexps from the web, as the regexps are now provided via the [uap-core](https://www.npmjs.com/package/uap-core) NPM module, which is now a dependency of this package.
 
 #### Upgrading from 1.10 to 2.0.0
 
