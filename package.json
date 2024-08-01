@@ -41,8 +41,7 @@
     "assume": "^2.3.0",
     "mocha": "^10.0.0",
     "pre-commit": "1.2.x",
-    "semver": "5.5.x",
-    "tmp": "^0.2.1"
+    "semver": "5.5.x"
   },
   "pre-commit": [
     "test",
@@ -56,6 +55,7 @@
   },
   "dependencies": {
     "lru-cache": "^7.14.0",
+    "tmp": "^0.2.1",
     "uap-core": "^0.16.0",
     "yamlparser": "0.0.2"
   }
