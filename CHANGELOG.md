@@ -1,8 +1,13 @@
 ## Version 2.0
 
+- **v2.4.4**
+
+- Resolve issues with permissions & moving files between filesystems ([#7](https://github.com/schmod/useragent-ng/pull/7) - [@johnou](https://github.com/johnou))
+- Correctly list `tmp` as a non-dev dependency ([#5] - [@xwiz](https://github.com/xwiz))
+
 - **v2.4.3**
-  
-  - Slimmed down the size/complexity of the built regexps.js file.  The regexps are now stored in a normal array.
+
+  - Slimmed down the size/complexity of the built regexps.js file. The regexps are now stored in a normal array.
 
 - **v2.4.0**
 
