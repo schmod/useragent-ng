@@ -1,5 +1,11 @@
 ## Version 2.0
 
+- **v2.4.5**
+
+- Remove explicit npm/node reference in postinstall script
+- Bump tmp dependency
+- Internal – Remove unmaintained pre-commit devDependency
+
 - **v2.4.4**
 
 - Resolve issues with permissions & moving files between filesystems ([#7](https://github.com/schmod/useragent-ng/pull/7) - [@johnou](https://github.com/johnou))

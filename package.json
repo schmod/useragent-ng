@@ -40,23 +40,18 @@
   "devDependencies": {
     "assume": "^2.3.0",
     "mocha": "^10.0.0",
-    "pre-commit": "1.2.x",
-    "semver": "5.5.x"
+    "semver": "^5.5.0"
   },
-  "pre-commit": [
-    "test",
-    "build"
-  ],
   "scripts": {
     "test": "mocha $(find test -name '*.test.js')",
     "qa": "mocha --ui exports $(find test -name '*.qa.js')",
-    "build": "node ./bin/build.js",
-    "postinstall": "npm run build"
+    "build": "./bin/build.js",
+    "postinstall": "./bin/build.js"
   },
   "dependencies": {
     "lru-cache": "^7.14.0",
-    "tmp": "^0.2.1",
-    "uap-core": "^0.16.0",
+    "tmp": "^0.2.3",
+    "uap-core": "^0.18.0",
     "yamlparser": "0.0.2"
   }
 }
